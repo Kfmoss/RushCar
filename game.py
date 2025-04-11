@@ -28,9 +28,11 @@ roadLines6 = rd.RoadLines(sts.WIDTH/1.575, 750)
 #dashboard
 score = sc.Score()
 
-pg.sprite.Group.add(road)
-pg.sprite.Group.add(roadLines1)
-pg.sprite.Group.add(roadLines2)
+
+
+#pg.sprite.Group.add(road)
+#pg.sprite.Group.add(roadLines1)
+#pg.sprite.Group.add(roadLines2)
 all_Obj = pg.sprite.Group(car)
 
 
@@ -51,7 +53,7 @@ while True:
     roadLines4.update(screen)
     roadLines5.update(screen)
     roadLines6.update(screen)
-    #roadLines2.update(screen)
+    
     all_Obj.draw(screen)
     all_Obj.update(screen)
 

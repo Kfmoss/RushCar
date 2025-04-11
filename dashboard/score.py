@@ -9,12 +9,25 @@ class Score:
         self.font = pg.font.Font(None, 36)
         self.color_text = sts.White
 
+    def score(self):
+        pass
+
+        
     def draw(self, screen):
+        time= pg.time.get_ticks()//1000
+        keys = pg.key.get_pressed()
+        if keys[pg.K_SPACE]:
+            self.score = str(time)
         pg.draw.rect(screen, self.color, self.rect)
         score_txt = self.font.render(f"Score: {self.score}", True, self.color_text)
         txt_rect = score_txt.get_rect(center=self.rect.center)
         screen.blit(score_txt, txt_rect)
+       
+
+
+        
     def update(self, screen):
         self.draw(screen)
+    
 
 
