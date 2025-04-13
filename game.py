@@ -3,6 +3,8 @@ import settings as sts
 import barra as br
 import sprites.road as rd
 import dashboard.score as sc
+import sprites.fuel as sf
+import random as rnd 
 import sys
 
 pg.init()
@@ -14,6 +16,8 @@ clock = pg.time.Clock()
 # pg.mixer.music.load('MyBackgroundGameSong.mp3')
 # pg.mixer.music.set_volume(0.3)
 # pg.mixer.music.play(-1)
+
+
 ## car
 car = br.Barra(sts.rect_speed_x, sts.rect_speed_y)
 ## road
@@ -28,12 +32,16 @@ roadLines6 = rd.RoadLines(sts.WIDTH/1.575, 750)
 #dashboard
 score = sc.Score()
 
+# Fuel
+fuel = sf.Energy(sts.WIDTH/1.25, 0)
 
 
 #pg.sprite.Group.add(road)
 #pg.sprite.Group.add(roadLines1)
 #pg.sprite.Group.add(roadLines2)
+
 all_Obj = pg.sprite.Group(car)
+all_Obj.add(fuel)
 
 
 
@@ -43,10 +51,21 @@ while True:
         if event.type == pg.QUIT:
             pg.quit()
             sys.exit()
+        print(fuel)
+        if fuel not in all_Obj:
+            posx = rnd.randint(sts.ROADWIDTH+40,sts.ROADWIDTH + 200)
+
+            #fuel = sf.Energy(sts.WIDTH/1.03, 0)
+            fuel = sf.Energy(posx, 0)
+
+            all_Obj.add(fuel)
+
+        
     screen.fill(sts.WHITE)
     score.update(screen)
     car.update(screen)
     road.update(screen)
+    fuel.update(screen)
     roadLines1.update(screen)
     roadLines2.update(screen)
     roadLines3.update(screen)
