@@ -6,7 +6,8 @@ class Barra(pg.sprite.Sprite):
         self.rect = pg.Rect(120, 20, sts.WIDTH/3, sts.HEIGHT/3)
         self.rsx = rectspeedx
         self.rsy = rectspeedy
-        self.car = pg.image.load('newCarPygame.jpg').convert_alpha()
+        self.car = pg.image.load('newCarPygame.jpg').convert()
+        self.car.set_colorkey(sts.slate_gray)
         self.image = pg.transform.scale(self.car, (sts.CARWIDTH-30,sts.CARHEIGHT-30))
         self.rect = self.image.get_rect()
 

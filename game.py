@@ -51,17 +51,18 @@ while True:
         if event.type == pg.QUIT:
             pg.quit()
             sys.exit()
-        print(fuel)
         if fuel not in all_Obj:
-            posx = rnd.randint(sts.ROADWIDTH+40,sts.ROADWIDTH + 200)
+            posx = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
 
-            #fuel = sf.Energy(sts.WIDTH/1.03, 0)
             fuel = sf.Energy(posx, 0)
 
             all_Obj.add(fuel)
+        get_collide = pg.sprite.spritecollide(fuel, all_Obj,True)
+        if get_collide:
+            print("hohoho")
 
         
-    screen.fill(sts.WHITE)
+    screen.fill(sts.Green)
     score.update(screen)
     car.update(screen)
     road.update(screen)
