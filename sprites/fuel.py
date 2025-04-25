@@ -5,8 +5,6 @@ import random as rd
 class Energy(pg.sprite.Sprite):
     def __init__(self, posx, posy):
         pg.sprite.Sprite.__init__(self)
-        #posx = rd.randint(sts.ROADWIDTH, sts.ROADHEIGTH) 
-        self.rect = pg.Rect(posx, posy, 35,60)
         self.fuel = pg.image.load('fuel.png').convert()
         self.image = pg.transform.scale(self.fuel, (38, 60) )
         self.rect = self.image.get_rect()
@@ -14,7 +12,7 @@ class Energy(pg.sprite.Sprite):
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
-        #pg.draw.rect(screen, self.rect)
+
     
     def move(self):
         keys=pg.key.get_pressed()

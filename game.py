@@ -41,7 +41,8 @@ fuel = sf.Energy(sts.WIDTH/1.25, 0)
 #pg.sprite.Group.add(roadLines2)
 
 all_Obj = pg.sprite.Group(car)
-all_Obj.add(fuel)
+energy = pg.sprite.Group(fuel)
+
 
 
 
@@ -57,9 +58,11 @@ while True:
             fuel = sf.Energy(posx, 0)
 
             all_Obj.add(fuel)
-        get_collide = pg.sprite.spritecollide(fuel, all_Obj,True)
+        get_collide = pg.sprite.spritecollide(car, energy,True)
         if get_collide:
-            print("hohoho")
+            pg.quit()
+            sys.exit()
+ 
 
         
     screen.fill(sts.Green)
@@ -74,8 +77,8 @@ while True:
     roadLines5.update(screen)
     roadLines6.update(screen)
     
-    all_Obj.draw(screen)
     all_Obj.update(screen)
+    all_Obj.draw(screen)
 
 
     pg.display.flip()
