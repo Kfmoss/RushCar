@@ -17,9 +17,7 @@ clock = pg.time.Clock()
 # pg.mixer.music.set_volume(0.3)
 # pg.mixer.music.play(-1)
 
-
-## car
-car = br.Barra(sts.rect_speed_x, sts.rect_speed_y)
+car = br.Barra()
 ## road
 road = rd.Road()
 roadLines1= rd.RoadLines(sts.WIDTH/1.575, 0)
@@ -36,15 +34,10 @@ score = sc.Score()
 fuel = sf.Energy(sts.WIDTH/1.25, 0)
 
 
-#pg.sprite.Group.add(road)
-#pg.sprite.Group.add(roadLines1)
-#pg.sprite.Group.add(roadLines2)
+
 
 all_Obj = pg.sprite.Group(car)
 energy = pg.sprite.Group(fuel)
-
-
-
 
 
 while True:
@@ -57,11 +50,11 @@ while True:
 
             fuel = sf.Energy(posx, 0)
 
-            all_Obj.add(fuel)
-        get_collide = pg.sprite.spritecollide(car, energy,True)
+            energy.add(fuel)
+        get_collide = pg.sprite.groupcollide(all_Obj, energy,False, True )
         if get_collide:
-            pg.quit()
-            sys.exit()
+            print("Collide detected!!!")
+    
  
 
         

@@ -1,19 +1,16 @@
 import pygame as pg
 import settings as sts
 class Barra(pg.sprite.Sprite):
-    def __init__(self, rectspeedx, rectspeedy):
+    def __init__(self):
         pg.sprite.Sprite.__init__(self)
       
-        self.rsx = rectspeedx
-        self.rsy = rectspeedy
+
         self.car = pg.image.load('newCarPygame.jpg').convert()
         self.image = pg.transform.scale(self.car, (sts.CARWIDTH-30,sts.CARHEIGHT-30))
         self.rect = self.image.get_rect()
         self.rect.center=(sts.WIDTH/2, sts.HEIGHT/2)
 
     def bounce_the_barra(self):
-    
-    
         pass
     def draw(self, screen):
         screen.blit(self.image, self.rect)
