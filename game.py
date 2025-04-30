@@ -3,6 +3,7 @@ import settings as sts
 import barra as br
 import sprites.road as rd
 import dashboard.score as sc
+import dashboard.energy as en
 import sprites.fuel as sf
 import random as rnd 
 import sys
@@ -29,6 +30,7 @@ roadLines6 = rd.RoadLines(sts.WIDTH/1.575, 750)
 
 #dashboard
 score = sc.Score()
+health =en.Fuel_Energy()
 
 # Fuel
 fuel = sf.Energy(sts.WIDTH/1.25, 0)
@@ -50,15 +52,16 @@ while True:
         #get_collide = pg.sprite.groupcollide(all_Obj, energy,False, True )
         get_collide = pg.sprite.spritecollide(car,energy, True)
         if get_collide:
-            print("Collide detected!!!")
             fuel.kill()
             score.score+=1
+
     
  
 
         
     screen.fill(sts.Green)
     score.update(screen)
+    health.update(screen)
     road.update(screen)
 
     roadLines1.update(screen)

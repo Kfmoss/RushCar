@@ -14,7 +14,6 @@ class Score:
     def draw(self, screen):
         time= pg.time.get_ticks()//1000
         keys = pg.key.get_pressed()
-        #self.score += self.extra
         pg.draw.rect(screen, self.color, self.rect)
         score_txt = self.font.render(f"Score: {str(self.score)}", True, self.color_text)
         txt_rect = score_txt.get_rect(center=self.rect.center)
