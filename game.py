@@ -32,10 +32,6 @@ score = sc.Score()
 
 # Fuel
 fuel = sf.Energy(sts.WIDTH/1.25, 0)
-
-
-
-
 all_Obj = pg.sprite.Group(car)
 energy = pg.sprite.Group(fuel)
 
@@ -45,24 +41,26 @@ while True:
         if event.type == pg.QUIT:
             pg.quit()
             sys.exit()
-        if fuel not in all_Obj:
+        if fuel not in energy:
             posx = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
 
             fuel = sf.Energy(posx, 0)
 
             energy.add(fuel)
-        get_collide = pg.sprite.groupcollide(all_Obj, energy,False, True )
+        #get_collide = pg.sprite.groupcollide(all_Obj, energy,False, True )
+        get_collide = pg.sprite.spritecollide(car,energy, True)
         if get_collide:
             print("Collide detected!!!")
+            fuel.kill()
+            score.score+=1
     
  
 
         
     screen.fill(sts.Green)
     score.update(screen)
-    car.update(screen)
     road.update(screen)
-    fuel.update(screen)
+
     roadLines1.update(screen)
     roadLines2.update(screen)
     roadLines3.update(screen)
@@ -72,6 +70,8 @@ while True:
     
     all_Obj.update(screen)
     all_Obj.draw(screen)
+    energy.update(screen)
+    energy.draw(screen)
 
 
     pg.display.flip()

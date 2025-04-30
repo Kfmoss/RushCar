@@ -15,14 +15,13 @@ class Energy(pg.sprite.Sprite):
 
     
     def move(self):
-        keys=pg.key.get_pressed()
         self.rect.y +=sts.roadLineinicialSpeed
-        if keys[pg.K_SPACE] and pg.time.get_ticks() <5000:
-            self.rect.y +=3
-        elif keys[pg.K_SPACE] and pg.time.get_ticks() >=5000:
+        keys=pg.key.get_pressed()
+        if pg.time.get_ticks() <5000:
             self.rect.y +=5
-        if self.rect.y > sts.HEIGHT:
+        if self.rect.y > sts.WIDTH:
             self.kill()
+            
 
 
     def update(self, screen):
