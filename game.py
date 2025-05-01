@@ -57,17 +57,10 @@ while True:
         if get_collide:
             fuel.kill()
             score.score+=1
-            
+
         health.full_energy = max(0, health.full_energy -0.2)
 
-        
-    
-
-
-
  
-
-        
     screen.fill(sts.Green)
     score.update(screen)
     health.update(screen)

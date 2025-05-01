@@ -16,14 +16,6 @@ class Fuel_Energy:
         self.color_text = sts.White
 
     def draw(self, screen):
-        #if self.full_energy ==100: 
-            #pg.draw.rect(screen, self.color_surface, self.rect2)
-            #pg.draw.rect(screen,self.color_bg, self.rect1)
-        #elif self.full_energy <100:
-            #self.new_energy = self.full_energy
-            #self.rect2 = pg.Rect(10, 70,self.new_energy, 30)
-            #pg.draw.rect(screen, self.color_surface, self.rect2)
-            #pg.draw.rect(screen,self.color_bg, self.rect1)
         self.full_energy = max(0, min(100, self.full_energy))
         self.rect2 = pg.Rect(10, 70, self.full_energy, 30)
         pg.draw.rect(screen, self.color_surface, self.rect2)
