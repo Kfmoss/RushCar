@@ -10,6 +10,7 @@ import sys
 
 pg.init()
 
+
 screen = pg.display.set_mode((sts.WIDTH*1.25,sts.HEIGHT*1.25))
 pg.display.set_caption("My game send info to my database")
 
@@ -29,13 +30,16 @@ roadLines5 = rd.RoadLines(sts.WIDTH/1.575, 600)
 roadLines6 = rd.RoadLines(sts.WIDTH/1.575, 750)
 
 #dashboard
+full_energy = 100
 score = sc.Score()
-health =en.Fuel_Energy()
+health =en.Fuel_Energy(full_energy)
 
 # Fuel
 fuel = sf.Energy(sts.WIDTH/1.25, 0)
 all_Obj = pg.sprite.Group(car)
 energy = pg.sprite.Group(fuel)
+
+# Energy
 
 
 while True:
@@ -45,17 +49,22 @@ while True:
             sys.exit()
         if fuel not in energy:
             posx = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
-
             fuel = sf.Energy(posx, 0)
-
             energy.add(fuel)
+        
         #get_collide = pg.sprite.groupcollide(all_Obj, energy,False, True )
         get_collide = pg.sprite.spritecollide(car,energy, True)
         if get_collide:
             fuel.kill()
             score.score+=1
+            
+        health.full_energy = max(0, health.full_energy -0.2)
 
+        
     
+
+
+
  
 
         
