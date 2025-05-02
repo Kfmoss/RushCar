@@ -51,12 +51,14 @@ while True:
             posx = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
             fuel = sf.Energy(posx, 0)
             energy.add(fuel)
-        
-        #get_collide = pg.sprite.groupcollide(all_Obj, energy,False, True )
+
         get_collide = pg.sprite.spritecollide(car,energy, True)
         if get_collide:
             fuel.kill()
             score.score+=1
+        keys = pg.key.get_pressed()
+        if keys[pg.K_SPACE]:
+            health.full_energy = max(0, health.full_energy -1)
 
         health.full_energy = max(0, health.full_energy -0.2)
 
