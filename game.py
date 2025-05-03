@@ -37,7 +37,7 @@ health =en.Fuel_Energy(full_energy)
 
 # coins
 
-coin1 = spc.Coin()
+coin1 = spc.Coin(sts.WIDTH/2,0)
 
 # Fuel
 fuel = sf.Energy(sts.WIDTH/1.25, 0)
@@ -47,7 +47,6 @@ all_Obj = pg.sprite.Group(car)
 energy = pg.sprite.Group(fuel)
 
 # Energy
-
 
 
 
@@ -61,10 +60,26 @@ while True:
             fuel = sf.Energy(posx, 0)
             energy.add(fuel)
 
-        get_collide = pg.sprite.spritecollide(car,energy, True)
+       
+
+        get_collide = pg.sprite.spritecollide(car,all_coins, True)
         if get_collide:
-            fuel.kill()
             score.score+=1
+            pos = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
+            # newCoin = spc.Coin(pos,0)
+            all_coins.add(spc.Coin(pos,0))
+
+
+        # if coin1 not in all_coins:
+        #     pos = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
+        #     newCoin = spc.Coin(pos,0)
+        #     all_coins.add(newCoin)
+
+
+
+
+
+
         keys = pg.key.get_pressed()
         if keys[pg.K_SPACE]:
             health.full_energy = max(0, health.full_energy -1)
@@ -84,10 +99,8 @@ while True:
     roadLines5.update(screen)
     roadLines6.update(screen)
     
-    all_Obj.update(screen)
-    all_Obj.draw(screen)
+    all_Obj.update(screen)  
     energy.update(screen)
-    energy.draw(screen)
     coin1.update(screen)
 
 
