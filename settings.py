@@ -64,4 +64,8 @@ roadLineinicialSpeed = 5
 
 ## size police
 
+## coins 
+COINWIDTH = 25
+COINHEIGTH = 25
+
 ## sound 

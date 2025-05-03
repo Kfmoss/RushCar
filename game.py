@@ -5,6 +5,7 @@ import sprites.road as rd
 import dashboard.score as sc
 import dashboard.energy as en
 import sprites.fuel as sf
+import sprites.coins as spc
 import random as rnd 
 import sys
 
@@ -34,12 +35,20 @@ full_energy = 100
 score = sc.Score()
 health =en.Fuel_Energy(full_energy)
 
+# coins
+
+coin1 = spc.Coin()
+
 # Fuel
 fuel = sf.Energy(sts.WIDTH/1.25, 0)
+
+all_coins = pg.sprite.Group(coin1)
 all_Obj = pg.sprite.Group(car)
 energy = pg.sprite.Group(fuel)
 
 # Energy
+
+
 
 
 while True:
@@ -79,6 +88,8 @@ while True:
     all_Obj.draw(screen)
     energy.update(screen)
     energy.draw(screen)
+    coin1.update(screen)
+
 
 
     pg.display.flip()
