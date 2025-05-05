@@ -13,6 +13,7 @@ pg.init()
 
 
 screen = pg.display.set_mode((sts.WIDTH*1.25,sts.HEIGHT*1.25))
+bg_pic = pg.image.load('img/streets.png')
 pg.display.set_caption("My game send info to my database")
 
 clock = pg.time.Clock()
@@ -64,18 +65,19 @@ while True:
             pass
 
 
-        # if coin1 not in all_coins:
-        #     pos = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
-        #     newCoin = spc.Coin(pos,0)
-        #     all_coins.add(newCoin)
-
-
         get_collide = pg.sprite.groupcollide(all_coins,all_Obj, True, False)
         if get_collide:
             score.score+=1
+            time = pg.time.get_ticks()
+
+
             posx = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
             coin1 = spc.Coin(posx, 0)
             all_coins.add(coin1)
+        
+        if coin1 not in all_coins:
+            pass
+
 
 
         keys = pg.key.get_pressed()
@@ -85,10 +87,11 @@ while True:
         health.full_energy = max(0, health.full_energy -0.2)
 
  
-    screen.fill(sts.Green)
+    #screen.fill(sts.Green)
+    screen.blit(bg_pic, [0,0])
     score.update(screen)
-    # health.update(screen)
-    # road.update(screen)
+    health.update(screen)
+    road.update(screen)
     # coin1.update(screen)
 
     roadLines1.update(screen)

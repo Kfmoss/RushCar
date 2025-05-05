@@ -14,10 +14,11 @@ class Coin(pg.sprite.Sprite):
         screen.blit(self.image, self.rect)
 
     def move(self):
-        self.rect.y +=sts.roadLineinicialSpeed
-        keys=pg.key.get_pressed()
-        if pg.time.get_ticks() <5000:
-            self.rect.y +=1
+        # self.rect.y +=sts.roadLineinicialSpeed
+        # keys=pg.key.get_pressed()
+        # if pg.time.get_ticks() <5000:
+        #     pass
+        self.rect.y +=1
         if self.rect.y > sts.WIDTH:
             self.kill()
             
