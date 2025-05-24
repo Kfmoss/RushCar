@@ -1,9 +1,4 @@
 
-
-
-
-
-
  	orange_red	#FF4500	(255,69,0)
  	dark orange	#FF8C00	(255,140,0)
  	orange	#FFA500	(255,165,0)
