@@ -8,8 +8,6 @@ class Barra(pg.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center=(sts.WIDTH/2, sts.HEIGHT/2)
 
-    def bounce_the_barra(self):
-        pass
     def draw(self, screen):
         screen.blit(self.image, self.rect)
         

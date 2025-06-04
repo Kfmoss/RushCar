@@ -80,16 +80,7 @@ while True:
             less_speed = pg.time.get_ticks()//1000
             speed.speed_now-=less_speed
             if speed.speed_now <= speed.min_speed:
-                speed.speed_now =speed.min_speed
-        
-
-            
-
-
-
-        
-    
-                
+                speed.speed_now =speed.min_speed    
 
 
         health.full_energy = max(0, health.full_energy -0.2)
@@ -108,7 +99,7 @@ while True:
         hit = pg.sprite.groupcollide(energy, all_Obj, True, False )
         if hit:
             if health.full_energy<100:
-                health.full_energy = max(0, health.full_energy +1.2)
+                health.full_energy = max(0, health.full_energy +3)
             
 
  
