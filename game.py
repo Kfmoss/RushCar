@@ -4,6 +4,7 @@ import barra as br
 import sprites.road as rd
 import dashboard.score as sc
 import dashboard.energy as en
+import dashboard.speedometer as sp
 import sprites.fuel as sf
 import sprites.coins as spc
 import random as rnd 
@@ -36,6 +37,7 @@ roadLines6 = rd.RoadLines(sts.WIDTH/1.575, 750)
 full_energy = 100
 score = sc.Score()
 health =en.Fuel_Energy(full_energy)
+speed = sp.Speedometer()
 
 # coins
 
@@ -48,11 +50,8 @@ all_coins = pg.sprite.Group(coin1)
 all_Obj = pg.sprite.Group(car)
 energy = pg.sprite.Group(fuel)
 
-print(hex(id(energy)))
-
-
-
-
+#print(hex(id(ener
+# gy)))
 
 while True:
     for event in pg.event.get():
@@ -66,33 +65,58 @@ while True:
         hit = pg.sprite.groupcollide(energy, all_Obj, True, False )
         if hit:
             pass
-
-
-
         keys = pg.key.get_pressed()
+        press = False
         if keys[pg.K_SPACE]:
+            press = True
+            
             health.full_energy = max(0, health.full_energy -0.5)
+            if speed.speed_now <speed.max_speed:
+                extra_speed = pg.time.get_ticks()//1000
+                speed.speed_now +=extra_speed
+                if speed.speed_now >=speed.max_speed:
+                    speed.speed_now+=0
+        if not keys[pg.K_SPACE] and speed.speed_now>speed.min_speed:
+            less_speed = pg.time.get_ticks()//1000
+            speed.speed_now-=less_speed
+            if speed.speed_now <= speed.min_speed:
+                speed.speed_now =speed.min_speed
+        
+
+            
+
+
+
+        
+    
+                
+
 
         health.full_energy = max(0, health.full_energy -0.2)
+        #Collide_coins
         get_collide = pg.sprite.groupcollide(all_coins,all_Obj, True, False)
         if get_collide:
             score.score+=1
             print(health.full_energy)
-            if health.full_energy<100:
-                health.full_energy = max(0, health.full_energy +1.2)
-
             posx = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
             coin1 = spc.Coin(posx, 0)
             all_coins.add(coin1)
         
         if coin1 not in all_coins:
             pass
+        #Collide_fuel
+        hit = pg.sprite.groupcollide(energy, all_Obj, True, False )
+        if hit:
+            if health.full_energy<100:
+                health.full_energy = max(0, health.full_energy +1.2)
+            
 
  
    
     screen.blit(bg_pic, [0,0])
     score.update(screen)
     health.update(screen)
+    speed.update(screen)
     road.update(screen)
    
 
