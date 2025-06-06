@@ -45,7 +45,7 @@ class Barra(pg.sprite.Sprite):
         self.draw(screen)
      
     def update(self,screen):
-        self.bounce_the_barra()
+        #self.bounce_the_barra()
         self.radar()
         self.create()
         self.carCrash()

@@ -8,8 +8,8 @@ import dashboard.speedometer as sp
 import sprites.fuel as sf
 import sprites.coins as spc
 import random as rnd 
+import sprites.cars as enc
 import sys
-
 pg.init()
 
 
@@ -24,6 +24,7 @@ pg.mixer.music.set_volume(0.2)
 pg.mixer.music.play(-1)
 
 car = br.Barra()
+enemyCar = enc.Enemy1()
 ## road
 road = rd.Road()
 roadLines1= rd.RoadLines(sts.WIDTH/1.575, 0)
@@ -48,6 +49,7 @@ fuel = sf.Energy(sts.WIDTH/1.25, 0)
 
 all_coins = pg.sprite.Group(coin1)
 all_Obj = pg.sprite.Group(car)
+
 energy = pg.sprite.Group(fuel)
 
 #print(hex(id(ener
@@ -108,6 +110,7 @@ while True:
     score.update(screen)
     health.update(screen)
     speed.update(screen)
+    enemyCar.update(screen)
     road.update(screen)
    
 
