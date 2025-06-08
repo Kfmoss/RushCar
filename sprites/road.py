@@ -7,7 +7,8 @@ class Road:
         self.roadWidth = sts.ROADWIDTH
         self.roadHeigth = sts.ROADHEIGTH
         self.color = sts.slate_gray
-        self.rect = pg.Rect(sts.WIDTH/3,0 ,490, 800)
+        #self.rect = pg.Rect(sts.WIDTH/3,0 ,490, 800)
+        self.rect = pg.Rect(sts.WIDTH/3,0 ,self.roadWidth,self.roadHeigth)
         self.speed = sts.roadLineinicialSpeed
 
     def draw(self, screen):

@@ -4,7 +4,7 @@ class Barra(pg.sprite.Sprite):
     def __init__(self):
         pg.sprite.Sprite.__init__(self)
         self.car = pg.image.load('img/playercar.png').convert_alpha()
-        self.image = pg.transform.scale(self.car, (sts.CARWIDTH-30,sts.CARHEIGHT-30))
+        self.image = pg.transform.scale(self.car, (sts.CARWIDTH-20,sts.CARHEIGHT-20))
         self.rect = self.image.get_rect()
         self.rect.center=(sts.WIDTH/2, sts.HEIGHT/2)
 
@@ -29,8 +29,10 @@ class Barra(pg.sprite.Sprite):
 
         if keys[pg.K_LEFT]:
             self.rect.x -=5
-            if self.rect.x <0:
-                self.rect.x =2
+            # if self.rect.x <0:
+            #     self.rect.x =2
+            if self.rect.x <sts.WIDTH/3:
+                self.rect.x = sts.WIDTH/3
 
         if keys[pg.K_UP]:
             self.rect.y -=5

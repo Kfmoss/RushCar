@@ -9,7 +9,9 @@ import sprites.fuel as sf
 import sprites.coins as spc
 import random as rnd 
 import sprites.cars as enc
+import random 
 import sys
+
 pg.init()
 
 
@@ -47,6 +49,7 @@ coin1 = spc.Coin(sts.WIDTH/2,0)
 # Fuel
 fuel = sf.Energy(sts.WIDTH/1.25, 0)
 
+all_enemies = pg.sprite.Group(enemyCar)
 all_coins = pg.sprite.Group(coin1)
 all_Obj = pg.sprite.Group(car)
 
@@ -66,7 +69,7 @@ while True:
             energy.add(fuel)
         hit = pg.sprite.groupcollide(energy, all_Obj, True, False )
         if hit:
-            pass
+            health.full_energy = max(0, health.full_energy +0.7)
         keys = pg.key.get_pressed()
         press = False
         if keys[pg.K_SPACE]:
@@ -90,7 +93,7 @@ while True:
         get_collide = pg.sprite.groupcollide(all_coins,all_Obj, True, False)
         if get_collide:
             score.score+=1
-            print(health.full_energy)
+           
             posx = rnd.randint(sts.ROADWIDTH-200,sts.ROADWIDTH + 200)
             coin1 = spc.Coin(posx, 0)
             all_coins.add(coin1)
@@ -102,6 +105,9 @@ while True:
         if hit:
             if health.full_energy<100:
                 health.full_energy = max(0, health.full_energy +3)
+        
+        ##settings enemycar
+        
             
 
  
@@ -110,7 +116,6 @@ while True:
     score.update(screen)
     health.update(screen)
     speed.update(screen)
-    enemyCar.update(screen)
     road.update(screen)
    
 
@@ -121,6 +126,7 @@ while True:
     roadLines5.update(screen)
     roadLines6.update(screen)
     
+    all_enemies.update(screen)
     all_Obj.update(screen)  
     energy.update(screen)
     coin1.update(screen)
