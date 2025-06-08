@@ -106,7 +106,15 @@ while True:
             if health.full_energy<100:
                 health.full_energy = max(0, health.full_energy +3)
         
-        ##settings enemycar
+        ##Collide enemy car
+        get_collide_enemy =pg.sprite.groupcollide(all_enemies, all_Obj, True, False)
+        if get_collide_enemy:
+            text = "warning, low energy"
+            text_font = pg.font.Font(None, 30)
+            t1 =text_font.render(text, True,pg.SRCALPHA,32 )
+            screen.blit(t1, (sts.WIDTH/2, sts.HEIGHT/2))
+
+
         
             
 
