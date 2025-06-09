@@ -9,6 +9,7 @@ import sprites.fuel as sf
 import sprites.coins as spc
 import random as rnd 
 import sprites.cars as enc
+import warning.warning as wr
 import random 
 import sys
 
@@ -29,12 +30,22 @@ car = br.Barra()
 enemyCar = enc.Enemy1()
 ## road
 road = rd.Road()
-roadLines1= rd.RoadLines(sts.WIDTH/1.575, 0)
-roadLines2 = rd.RoadLines(sts.WIDTH/1.575, 150)
-roadLines3 = rd.RoadLines(sts.WIDTH/1.575, 300)
-roadLines4 = rd.RoadLines(sts.WIDTH/1.575, 450)
-roadLines5 = rd.RoadLines(sts.WIDTH/1.575, 600)
-roadLines6 = rd.RoadLines(sts.WIDTH/1.575, 750)
+
+Rlines= []
+distance = 0
+for i in range(6):
+    rline = rd.RoadLines(sts.WIDTH/1.575, distance)
+    Rlines.append(rline)
+    distance +=150
+
+    
+
+# roadLines1= rd.RoadLines(sts.WIDTH/1.575, 0)
+# roadLines2 = rd.RoadLines(sts.WIDTH/1.575, 150)
+# roadLines3 = rd.RoadLines(sts.WIDTH/1.575, 300)
+# roadLines4 = rd.RoadLines(sts.WIDTH/1.575, 450)
+# roadLines5 = rd.RoadLines(sts.WIDTH/1.575, 600)
+# roadLines6 = rd.RoadLines(sts.WIDTH/1.575, 750)
 
 #dashboard
 full_energy = 100
@@ -49,6 +60,14 @@ coin1 = spc.Coin(sts.WIDTH/2,0)
 # Fuel
 fuel = sf.Energy(sts.WIDTH/1.25, 0)
 
+
+
+
+
+#########  Groups 
+
+
+
 all_enemies = pg.sprite.Group(enemyCar)
 all_coins = pg.sprite.Group(coin1)
 all_Obj = pg.sprite.Group(car)
@@ -57,6 +76,8 @@ energy = pg.sprite.Group(fuel)
 
 #print(hex(id(ener
 # gy)))
+
+
 
 while True:
     for event in pg.event.get():
@@ -89,6 +110,23 @@ while True:
 
 
         health.full_energy = max(0, health.full_energy -0.2)
+        if health.full_energy ==0:
+            speed.speed_now =0
+            coin1.stopSignal = False
+            for i in Rlines:
+                i.stopSignal= False
+            # roadLines1.stopSignal = False
+            # roadLines2.stopSignal = False
+            # roadLines3.stopSignal = False
+            # roadLines4.stopSignal = False
+            # roadLines5.stopSignal = False
+            # roadLines6.stopSignal = False
+            
+
+
+    
+
+
         #Collide_coins
         get_collide = pg.sprite.groupcollide(all_coins,all_Obj, True, False)
         if get_collide:
@@ -109,30 +147,23 @@ while True:
         ##Collide enemy car
         get_collide_enemy =pg.sprite.groupcollide(all_enemies, all_Obj, True, False)
         if get_collide_enemy:
-            text = "warning, low energy"
-            text_font = pg.font.Font(None, 30)
-            t1 =text_font.render(text, True,pg.SRCALPHA,32 )
-            screen.blit(t1, (sts.WIDTH/2, sts.HEIGHT/2))
-
-
-        
-            
-
- 
+            pass
+    
    
     screen.blit(bg_pic, [0,0])
     score.update(screen)
     health.update(screen)
     speed.update(screen)
     road.update(screen)
-   
 
-    roadLines1.update(screen)
-    roadLines2.update(screen)
-    roadLines3.update(screen)
-    roadLines4.update(screen)
-    roadLines5.update(screen)
-    roadLines6.update(screen)
+    for i in Rlines:
+        i.update(screen)
+    # roadLines1.update(screen)
+    # roadLines2.update(screen)
+    # roadLines3.update(screen)
+    # roadLines4.update(screen)
+    # roadLines5.update(screen)
+    # roadLines6.update(screen)
     
     all_enemies.update(screen)
     all_Obj.update(screen)  

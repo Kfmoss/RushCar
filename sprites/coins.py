@@ -9,15 +9,16 @@ class Coin(pg.sprite.Sprite):
         self.image = pg.transform.scale(self.fuel, (sts.COINWIDTH, sts.COINWIDTH) )
         self.rect = self.image.get_rect()
         self.rect.center= (posx, posy)
+        self.stopSignal = True
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
 
     def move(self):
-        self.rect.y +=1
-        if self.rect.y > sts.WIDTH:
-            self.kill()
-            
+        if self.stopSignal is True:
+            self.rect.y +=1
+            if self.rect.y > sts.WIDTH:
+                self.kill()
 
 
     def update(self, screen):
