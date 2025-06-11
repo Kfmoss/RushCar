@@ -1,5 +1,6 @@
 import pygame as pg
 import settings as sts
+import sprites.road as sroad
 
 
 class warning:
@@ -10,7 +11,8 @@ class warning:
 
     def update(self, screen):
 
-        screen.blit(self.t1, (sts.WIDTH/2, sts.HEIGHT/2))
+        go_rect = self.t1.get_rect(center =(sts.ROADWIDTH+20, sts.ROADHEIGTH/2))
+        screen.blit(self.t1, go_rect)
 
 class LowEnergy:
     def __init__(self):
@@ -23,8 +25,7 @@ class LowEnergy:
         if secs and self.lowEnergy:
             if secs%2==0:
                 screen.blit(self.t1, (10,190))
-        # if secs > secs+10:
-        #     self.lowEnergy=False
+
 
 
 
