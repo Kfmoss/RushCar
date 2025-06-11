@@ -53,6 +53,7 @@ fuel = sf.Energy(sts.WIDTH/1.25, 0)
 
 # warning 
 Game_over = False
+Low_energy = False 
 
 
 #########  Groups 
@@ -101,6 +102,8 @@ while True:
 
 
         health.full_energy = max(0, health.full_energy -0.2)
+        if health.full_energy <30:
+            Low_energy = True
         if health.full_energy ==0:
             speed.speed_now =0
             coin1.stopSignal = False
@@ -109,14 +112,7 @@ while True:
             for i in all_Obj:
                 i.stopSignal = False
             Game_over = True
-            
-        
-
-            
-
-
-    
-
+            Low_energy = False
 
         #Collide_coins
         get_collide = pg.sprite.groupcollide(all_coins,all_Obj, True, False)
@@ -157,6 +153,12 @@ while True:
     if Game_over:
         go= wr.warning()
         go.update(screen)
+    if Low_energy:
+        le = wr.LowEnergy()
+        le.lowEnergy = True
+        le.update(screen)
+    
+
 
 
 
