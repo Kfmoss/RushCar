@@ -38,15 +38,6 @@ for i in range(6):
     Rlines.append(rline)
     distance +=150
 
-    
-
-# roadLines1= rd.RoadLines(sts.WIDTH/1.575, 0)
-# roadLines2 = rd.RoadLines(sts.WIDTH/1.575, 150)
-# roadLines3 = rd.RoadLines(sts.WIDTH/1.575, 300)
-# roadLines4 = rd.RoadLines(sts.WIDTH/1.575, 450)
-# roadLines5 = rd.RoadLines(sts.WIDTH/1.575, 600)
-# roadLines6 = rd.RoadLines(sts.WIDTH/1.575, 750)
-
 #dashboard
 full_energy = 100
 score = sc.Score()
@@ -60,8 +51,8 @@ coin1 = spc.Coin(sts.WIDTH/2,0)
 # Fuel
 fuel = sf.Energy(sts.WIDTH/1.25, 0)
 
-
-
+# warning 
+Game_over = False
 
 
 #########  Groups 
@@ -115,12 +106,12 @@ while True:
             coin1.stopSignal = False
             for i in Rlines:
                 i.stopSignal= False
-            # roadLines1.stopSignal = False
-            # roadLines2.stopSignal = False
-            # roadLines3.stopSignal = False
-            # roadLines4.stopSignal = False
-            # roadLines5.stopSignal = False
-            # roadLines6.stopSignal = False
+            for i in all_Obj:
+                i.stopSignal = False
+            Game_over = True
+            
+        
+
             
 
 
@@ -158,17 +149,14 @@ while True:
 
     for i in Rlines:
         i.update(screen)
-    # roadLines1.update(screen)
-    # roadLines2.update(screen)
-    # roadLines3.update(screen)
-    # roadLines4.update(screen)
-    # roadLines5.update(screen)
-    # roadLines6.update(screen)
     
     all_enemies.update(screen)
     all_Obj.update(screen)  
     energy.update(screen)
     coin1.update(screen)
+    if Game_over:
+        go= wr.warning()
+        go.update(screen)
 
 
 

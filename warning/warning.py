@@ -4,11 +4,9 @@ import settings as sts
 
 class warning:
     def __init__(self):
-        self.text = "warning, low energy"
-        self.text_font = pg.font.Font(None, 30)
-        self.t1 =self.text_font.render(self.text, True,pg.SRCALPHA,32 )
-
-    
+        self.text = "GAME OVER"
+        self.text_font = pg.font.SysFont("Serif", 85)
+        self.t1 =self.text_font.render(self.text, True,"white",32)
 
     def update(self, screen):
 

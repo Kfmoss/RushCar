@@ -7,7 +7,6 @@ class Road:
         self.roadWidth = sts.ROADWIDTH
         self.roadHeigth = sts.ROADHEIGTH
         self.color = sts.slate_gray
-        #self.rect = pg.Rect(sts.WIDTH/3,0 ,490, 800)
         self.rect = pg.Rect(sts.WIDTH/3,0 ,self.roadWidth,self.roadHeigth)
         self.speed = sts.roadLineinicialSpeed
         
@@ -17,7 +16,7 @@ class Road:
         pg.draw.rect(screen, self.color, self.rect)
         
             
-        # screen.blit(screen, self.rect)
+
     def update(self, screen):
         self.draw(screen)
 
@@ -27,7 +26,7 @@ class RoadLines:
         self.color = sts.WHITE
         self.rect = pg.Rect(pos_X,pos_y ,sts.ROADLINEWIDTH,sts.ROADLINEHEIGTH)
         self.stopSignal = True
-        #self.rect = pg.Rect(sts.WIDTH/1.15,0 ,sts.ROADLINEWIDTH,sts.ROADLINEHEIGTH)
+    
         
 
 
@@ -46,10 +45,6 @@ class RoadLines:
                 self.rect.y +=10
         else: 
             sts.roadLineinicialSpeed =0
-        
-
-                
-       
 
         
     def update(self, screen):

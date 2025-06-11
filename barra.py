@@ -7,6 +7,7 @@ class Barra(pg.sprite.Sprite):
         self.image = pg.transform.scale(self.car, (sts.CARWIDTH-30,sts.CARHEIGHT-30))
         self.rect = self.image.get_rect()
         self.rect.center=(sts.WIDTH/2, sts.HEIGHT/2)
+        self.stopSignal = True
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
@@ -21,31 +22,32 @@ class Barra(pg.sprite.Sprite):
     def carCrash(self):
         pass
     def move(self, screen):
-        keys = pg.key.get_pressed()
-        if keys[pg.K_RIGHT]:
-            self.rect.x +=5
-            # if self.rect.x >sts.WIDTH:
-            #     self.rect.x = sts.WIDTH
-            if self.rect.x >695:
-                self.rect.x =695
+        if self.stopSignal == True:
+            keys = pg.key.get_pressed()
+            if keys[pg.K_RIGHT]:
+                self.rect.x +=5
+                # if self.rect.x >sts.WIDTH:
+                #     self.rect.x = sts.WIDTH
+                if self.rect.x >695:
+                    self.rect.x =695
 
-        if keys[pg.K_LEFT]:
-            self.rect.x -=5
-            # if self.rect.x <0:
-            #     self.rect.x =2
-            if self.rect.x <sts.WIDTH/3:
-                self.rect.x = sts.WIDTH/3
+            if keys[pg.K_LEFT]:
+                self.rect.x -=5
+                # if self.rect.x <0:
+                #     self.rect.x =2
+                if self.rect.x <sts.WIDTH/3:
+                    self.rect.x = sts.WIDTH/3
 
-        if keys[pg.K_UP]:
-            self.rect.y -=5
+            if keys[pg.K_UP]:
+                self.rect.y -=5
 
-            if self.rect.top <0:
-                self.rect.y = 5
-        if keys[pg.K_DOWN]:
-            self.rect.y +=5
+                if self.rect.top <0:
+                    self.rect.y = 5
+            if keys[pg.K_DOWN]:
+                self.rect.y +=5
 
-            if self.rect.y >sts.HEIGHT:
-                self.rect.y=sts.HEIGHT-5
+                if self.rect.y >sts.HEIGHT:
+                    self.rect.y=sts.HEIGHT-5
         self.draw(screen)
 
     def update(self,screen):
